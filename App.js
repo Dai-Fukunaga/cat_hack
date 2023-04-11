@@ -1,33 +1,28 @@
-import React, { memo }  from 'react';
-import Layout from "./components/Layout";
-import TodoList from "./components/TodoList";
-import AddTodoForm from "./components/AddTodoForm";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./components/HomeScreen";
+import InvoiceEditScreen from "./components/InvoiceEditScreen";
+import SummaryScreen from "./components/SummaryScreen";
 
-import { useInputValue, useTodos } from "./hooks/todoList";
-
-const App = memo((props) => {
-  const { inputValue, changeInput, clearInput } = useInputValue();
-  const { todos, addTodo, checkTodo, removeTodo } = useTodos();
-
-  const clearInputAndAddTodo = _ => {
-    clearInput();
-    addTodo(inputValue);
-  };
-
+const Stack = createStackNavigator();
+function RootStack() {
   return (
-      <Layout>
-        <AddTodoForm
-          inputValue={inputValue}
-          changeInput={changeInput}
-          onIconPress={clearInputAndAddTodo}
-        />
-        <TodoList
-          items={todos}
-          onItemCheck={idx => checkTodo(idx)}
-          onItemRemove={idx => removeTodo(idx)}
-        />
-      </Layout>
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{ gestureEnabled: false }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="InvoiceEdit" component={InvoiceEditScreen} />
+      <Stack.Screen name="Summary" component={SummaryScreen} />
+    </Stack.Navigator>
   );
-});
+}
 
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}
