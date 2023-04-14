@@ -6,14 +6,18 @@ import styles from "../styles.js";
 class Practice extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Practice</Text>
+      <View style={styles.practice_container}>
+
+        <Text style={styles.p_description}>Term:</Text>
+
+        <Text style={styles.p_description}>Meaning:</Text>
+
         <Button
           title="Deck Name"
           onPress={() => this.props.navigation.navigate("Home")}
         />
         <StatusBar style="auto" />
-      </View>
+      </View >
     );
   }
 }

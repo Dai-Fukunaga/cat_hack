@@ -10,7 +10,7 @@ class Home extends React.Component {
         <Text>Home</Text>
         <Button
           title="Home"
-          onPress={() => this.props.navigation.navigate("Home")}
+          onPress={() => this.props.navigation.navigate("Practice")}
         />
         <StatusBar style="auto" />
       </View>
