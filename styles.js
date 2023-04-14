@@ -14,10 +14,24 @@ export default StyleSheet.create({
   },
   p_description: {
     alignSelf: "flex-start",
-    fontSize: 20,  // adjust to your liking
-    fontWeight: '600',  // adjust to your liking
-    color: 'black',  // or any other color that has enough contrast with the background
-    marginBottom: 8,  // add some spacing between the subtitle and the next element
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'black',
+    marginBottom: 8,
+  },
+  fc_container: {
+    backgroundColor: 'white',
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    borderColor: 'black',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 2,
+    width: "90%",
+    height: "20%",
   },
   modal: {
     flex: 1,
