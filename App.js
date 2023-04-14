@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { StyleSheet } from "react-native";
 import Home from "./components/Home";
 import Practice from "./components/Practice";
 import Edit from "./components/Edit";
