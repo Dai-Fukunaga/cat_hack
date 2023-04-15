@@ -8,10 +8,7 @@ class Edit extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Edit</Text>
-        <Button
-          title="Edit"
-          onPress={() => this.props.navigation.navigate("Home")}
-        />
+        
         <StatusBar style="auto" />
       </View>
     );
