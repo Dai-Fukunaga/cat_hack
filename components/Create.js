@@ -12,6 +12,7 @@ const Create = memo((props) => {
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
   const [deck, setDeck] = useState([]);
+  const [warning, setWarning] = useState(false);
 
   // add card to deck
   const addCards = () => {
@@ -64,8 +65,20 @@ const Create = memo((props) => {
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter back" onChangeText={setBack} value={back}></TextInput>
           </View>
+          {warning && (
+            <>
+              <Text>FIll out both sides of the cards</Text>
+            </>
+          )}
           <View style={styles.p_button}>
-            <Button title="Add Cards" onPress={addCards}></Button>
+            <Button title="Add Cards" onPress={() => {
+              if (front !== "" && back !== "") {
+                addCards();
+                setWarning(false);
+              } else {
+                setWarning(true);
+              }
+            }}></Button>
             <Button title="Save" onPress={() => { update(); props["navigation"].goBack(); }}></Button>
           </View>
           <StatusBar style="auto" />
@@ -78,8 +91,20 @@ const Create = memo((props) => {
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter deck name" onChangeText={setTmpName}></TextInput>
           </View>
+          {warning && (
+            <>
+              <Text>Please input the deck name</Text>
+            </>
+          )}
           <View style={styles.p_button}>
-            <Button title="Make a new deck" onPress={() => { setDeckName(tmpName) }}></Button>
+            <Button title="Make a new deck" onPress={() => {
+              if (tmpName === "") {
+                setWarning(true);
+              } else {
+                setDeckName(tmpName);
+                setWarning(false);
+              }
+            }}></Button>
           </View>
         </>
       )}
