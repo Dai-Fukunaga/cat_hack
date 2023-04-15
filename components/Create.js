@@ -13,6 +13,7 @@ const Create = memo((props) => {
   const [back, setBack] = useState("");
   const [deck, setDeck] = useState([]);
   const [warning, setWarning] = useState(false);
+  const [deckNameWarning, setDeckNameWarning] = useState(false);
 
   // add card to deck
   const addCards = () => {
@@ -115,12 +116,23 @@ const Create = memo((props) => {
               <Text>Please input the deck name</Text>
             </>
           )}
+          {deckNameWarning && (
+            <>
+              <Text>Deck name already exists</Text>
+            </>
+          )}
           <View style={styles.p_button}>
-            <TouchableOpacity style={styles.wide_button} onPress={() => {
+            <TouchableOpacity style={styles.wide_button} onPress={async () => {
               if (tmpName === "") {
                 setWarning(true);
               } else {
-                setDeckName(tmpName);
+                const oldDecks = await getData();
+                if (tmpName in oldDecks) {
+                  setDeckNameWarning(true);
+                } else {
+                  setDeckName(tmpName);
+                  setDeckNameWarning(false);
+                }
                 setWarning(false);
               }
             }}>
