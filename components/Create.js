@@ -20,6 +20,8 @@ const Create = memo((props) => {
     setBack("");
   }
 
+  const { setData } = props.route.params;
+
   // get deck data from the async storage
   const getData = async () => {
     try {
@@ -45,6 +47,7 @@ const Create = memo((props) => {
     } catch (e) {
       console.log(e);
     }
+    setData();
   }
 
   return (

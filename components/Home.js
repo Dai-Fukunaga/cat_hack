@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, Text, View, FlatList, ListItem, StyleSheet, Icon, Body, TouchableOpacity } from "react-native";
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../styles.js";
@@ -9,6 +9,10 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 const Home = memo((props) => {
   // save deck data
   const [decks, setDecks] = useState({});
+
+  useEffect(() => {
+    setData();
+  }, [])
 
   // get deck data from async storage
   const getData = async () => {
@@ -32,9 +36,6 @@ const Home = memo((props) => {
     }
   }
 
-  // update the decks data
-  // setData();
-
   const deleteDeck = async (item) => {
     const decks = await getData();
     delete decks[item];
@@ -42,6 +43,7 @@ const Home = memo((props) => {
     setData();
   }
 
+  // update async storage data
   const update = async (decks) => {
     try {
       await AsyncStorage.setItem('decks', JSON.stringify(decks));
@@ -118,7 +120,7 @@ const Home = memo((props) => {
       {/* Plus Button */}
       <TouchableOpacity
         style={styles.h_button}
-        onPress={() => { props.navigation.navigate("Create"); }}
+        onPress={() => { props.navigation.navigate("Create", { setData: setData }); }}
       >
         <AntDesign name="plus" size={30} color="white" />
       </TouchableOpacity>
