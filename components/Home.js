@@ -56,7 +56,7 @@ const Home = memo((props) => {
   // print all deck names
   const PrintDeck = memo((props) => {
     const { decks } = props;
-    const deckNames = Object.keys(decks);
+    const deckNames = decks !== null ? Object.keys(decks) : [];
 
     // shuffle deck
     const shuffleArray = (array) => {
