@@ -16,15 +16,15 @@ const Home = memo((props) => {
   //   }
   // }
 
-  const getDeck = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('decks');
-      setStr(jsonValue);
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      // error reading value
-    }
-  }
+  // const getDeck = async () => {
+  //   try {
+  //     const jsonValue = await AsyncStorage.getItem('decks');
+  //     setStr(jsonValue);
+  //     return jsonValue != null ? JSON.parse(jsonValue) : null;
+  //   } catch (e) {
+  //     // error reading value
+  //   }
+  // }
 
   const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]] } };
 
@@ -32,13 +32,21 @@ const Home = memo((props) => {
     const { decks } = props;
     const deckNames = Object.keys(decks);
 
+    const shuffleArray = (array) => {
+      let newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    };
+
     const renderItem = ({ item }) => (
       <View style={{ padding: 10 }}>
         <Button
           title={item}
           onPress={() => {
-            //handleButtonPress();
-            props.navigation.navigate("Practice");
+            props.navigation.navigate("Practice", shuffleArray(decks[item]));
           }}
           style={{ fontSize: 20 }}
         />
