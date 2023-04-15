@@ -26,14 +26,14 @@ const Home = memo((props) => {
     }
   }
 
-  const deck_dict = { "decks": { "deck1": [[1, 2], [3, 4]], "deck2": [[5, 6], [7, 8]] } };
+  const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]] } };
 
   const PrintDeck = memo((props) => {
     const { decks } = props;
     const deckNames = Object.keys(decks);
     const renderItem = ({ item }) => (
       <View style={{ padding: 10 }}>
-        <Text style={{fontSize: 20}}>{item}</Text>
+        <Text style={{ fontSize: 20 }}>{item}</Text>
       </View>
     );
 
