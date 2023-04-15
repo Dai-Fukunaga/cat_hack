@@ -5,12 +5,15 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 1,
+    //width: "95%",
   },
   containerScroll: {
     flexGrow: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 1,
   },
   modal: {
     flex: 1,
@@ -20,14 +23,20 @@ export default StyleSheet.create({
   },
   scrollView: {
     backgroundColor: 'white',
-    marginHorizontal: 20,
+    borderWidth: 1,
+
+    //marginHorizontal: 20,
   },
   header1: {
-    fontSize: 32,
+    fontSize: 20,
   },
-  fc_container: {
+  input: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+
     backgroundColor: 'white',
-    padding: 20,
+
     margin: 10,
     borderRadius: 10,
     borderColor: 'gray',
@@ -36,15 +45,8 @@ export default StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 2,
-    width: "90%",
-    height: "20%",
-  },
-  input: {
-    height: "10%",
-    width: "80%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
+    height: 100,
+    width: 300,
     // padding: 10,
   }
 });

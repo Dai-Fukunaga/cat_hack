@@ -9,20 +9,28 @@ import { registerRootComponent } from 'expo';
 const Create = memo((props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header1}>Front</Text>
-      <TextInput
-        style={styles.input}
-      />
-      <Text style={styles.header1}>Back</Text>
-      <TextInput
-        style={styles.input}
-      />
+      <View style={{
+        flexDirection: 'row',
+        height: "15%",
+        padding: 20,
+      }}>
+        <Text style={styles.header1}>Title: </Text>
+        <TextInput style={{
+          width: '80%',
+          height: '35%',
+          borderWidth: 1,
+          alignItems: 'center',
+        }} />
+      </View>
 
-      {/* <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.containerScroll}>
-          <Text></Text>
+          <Text style={styles.header1}>Front</Text>
+          <TextInput style={styles.input} />
+          <Text style={styles.header1}>Back</Text>
+          <TextInput style={styles.input} />
         </ScrollView>
-      </SafeAreaView> */}
+      </SafeAreaView>
 
       {/* <Text>Create</Text>
         <Button
@@ -30,7 +38,7 @@ const Create = memo((props) => {
           onPress={() => this.props.navigation.navigate("Home")}
         /> */}
       <StatusBar style="auto" />
-    </View>
+    </View >
   );
 });
 
