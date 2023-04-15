@@ -38,17 +38,20 @@ const Create = memo((props) => {
 
   // update the deck data to the async storage
   const update = async () => {
+    if (front.length !== 0 && back.length !== 0) {
+      setDeck([...deck, [front, back]]);
+    }
     const oldDecks = await getData();
     const newDeck = { [deckName]: deck };
-    if (front !== "" && back !== "") {
-      addCards();
-    }
+    setFront("");
+    setBack("");
     try {
       await AsyncStorage.setItem('decks', JSON.stringify({ ...oldDecks, ...newDeck }));
     } catch (e) {
       console.log(e);
     }
     setData();
+    props["navigation"].goBack();
   }
 
   return (
@@ -57,12 +60,20 @@ const Create = memo((props) => {
       {deckName !== "" && (
         <>
           <Text style={styles.create_deck_name}>{deckName}</Text>
-          <TouchableOpacity style={styles.wide_button} onPress={() => { update(); props["navigation"].goBack(); }}>
-            <Text style={styles.default_font}>Save</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => { update(); props["navigation"].goBack(); }}>
-            <Text style={styles.default_font}>Save</Text>
-          </TouchableOpacity>
+          {(deck.length >= 1 || (front.length !== 0 && back.length !== 0)) && (
+            <TouchableOpacity style={styles.wide_button} onPress={() => {
+              update();
+            }}>
+              <Text style={styles.default_font}>Save</Text>
+            </TouchableOpacity>
+          )}
+          {!(deck.length >= 1 || (front.length !== 0 && back.length !== 0)) && (
+            <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => {
+            }}>
+              <Text style={styles.default_font}>Save</Text>
+            </TouchableOpacity>
+          )}
+          <Text style={styles.p_description}>Front</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter front" onChangeText={setFront} value={front}></TextInput>
           </View>
@@ -118,7 +129,7 @@ const Create = memo((props) => {
           </View>
         </>
       )}
-    </View >
+    </View>
   );
 });
 
