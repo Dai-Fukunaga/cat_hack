@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -7,17 +11,24 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   p_container: {
-    flex: 1,
+    flex: 0.8,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "center"
   },
   p_description: {
-    alignSelf: "flex-start",
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '500',
     color: 'black',
-    marginBottom: 8,
+    margin: 8,
+  },
+  p_tandm: {
+    fontSize: 20,
+    fontWeight: '400',
+    margin: 8,
+  },
+  p_button: {
+    flex: 0.2
   },
   fc_container: {
     backgroundColor: 'white',
