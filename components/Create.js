@@ -63,14 +63,14 @@ const Create = memo((props) => {
           <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => { update(); props["navigation"].goBack(); }}>
             <Text style={styles.default_font}>Save</Text>
           </TouchableOpacity>
-          <Text style={styles.p_description}>Front</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter front" onChangeText={setFront} value={front}></TextInput>
           </View>
-          <Text style={styles.p_description}>Back</Text>
+          <Text style={styles.p_description}>Front</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter back" onChangeText={setBack} value={back}></TextInput>
           </View>
+          <Text style={styles.p_description}>Back</Text>
           {warning && (
             <>
               <Text>FIll out both sides of the cards</Text>
@@ -95,7 +95,7 @@ const Create = memo((props) => {
       {/* if deck name is undefined */}
       {deckName === "" && (
         <>
-          <Text style={styles.p_description}>Deck Name</Text>
+          <Text style={{ ...styles.create_deck_name, alignSelf: 'center' }}>Deck Name</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter deck name" onChangeText={setTmpName}></TextInput>
           </View>

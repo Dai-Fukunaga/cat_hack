@@ -114,10 +114,11 @@ export default StyleSheet.create({
     color: '#333333',
   },
   create_deck_name: {
+    alignSelf: "flex-start",
     fontWeight: "bold",
-    fontSize: 12,
+    fontSize: 25,
     margin: 10,
-    color: '#333333',
+    color: 'black',
   },
   containerCreate1: {
     flex: 1,
@@ -143,10 +144,12 @@ export default StyleSheet.create({
 
   },
   p_description: {
+    alignSelf: "flex-end",
+    marginRight: width * 0.1,
+    marginDown: 20,
     fontSize: 20,
     fontWeight: '500',
     color: 'black',
-    margin: 8,
   },
   p_tandm: {
     textAlign: 'center',
@@ -161,7 +164,8 @@ export default StyleSheet.create({
   fc_container: {
     backgroundColor: colors.fccolor,
     padding: 20,
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 5,
     borderRadius: 10,
     borderColor: 'black',
     shadowColor: 'black',
