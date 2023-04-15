@@ -5,7 +5,6 @@ import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../styles.js";
 
-
 const Home = memo((props) => {
   const [decks, setDecks] = useState({});
   // const addDeck = async (deck) => {
@@ -51,6 +50,10 @@ const Home = memo((props) => {
       <Button
         title="Edit"
         onPress={() => props.navigation.navigate("Edit")}
+      />
+      <Button
+        title="Create"
+        onPress={() => props.navigation.navigate("Create")}
       />
       <PrintDeck decks={deck_dict["decks"]}></PrintDeck>
       {/* <Button title="test" icon="login" onPress={() => storeData("tst")} >test</Button>

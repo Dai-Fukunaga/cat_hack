@@ -15,10 +15,13 @@ export default StyleSheet.create({
   containerCreate1: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
     borderWidth: 1,
     height: '15%',
+    //width: '85%',
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 0,
+    marginBottom: 0,
   },
   containerScroll: {
     flexGrow: 1,
@@ -26,6 +29,8 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
+    //height: '20%',
+
   },
   p_container: {
     flex: 1,
@@ -80,6 +85,15 @@ export default StyleSheet.create({
     //marginHorizontal: 20,
   },
   header1: {
+    fontSize: 20,
+    paddingTop: 0,
+    marginTop: 0,
+  },
+  titleInput: {
+    width: '75%',
+    height: '100%',
+    borderBottomWidth: 1,
+    alignItems: 'center',
     fontSize: 20,
   },
   input: {
