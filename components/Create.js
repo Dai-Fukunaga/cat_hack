@@ -13,12 +13,16 @@ const Create = memo((props) => {
   const [back, setBack] = useState("");
   const [deck, setDeck] = useState([]);
 
+  // add card to deck
   const addCards = () => {
     setDeck([...deck, [front, back]]);
     setFront("");
     setBack("");
   }
 
+  const { setData } = props.route.params;
+
+  // get deck data from the async storage
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('decks');
@@ -31,18 +35,24 @@ const Create = memo((props) => {
     }
   }
 
+  // update the deck data to the async storage
   const update = async () => {
     const oldDecks = await getData();
     const newDeck = { [deckName]: deck };
+    if (front !== "" && back !== "") {
+      addCards();
+    }
     try {
       await AsyncStorage.setItem('decks', JSON.stringify({ ...oldDecks, ...newDeck }));
     } catch (e) {
       console.log(e);
     }
+    setData();
   }
 
   return (
     <View style={styles.p_container}>
+      {/* if deck name is defined */}
       {deckName !== "" && (
         <>
           <Text>{deckName}</Text>
@@ -61,6 +71,7 @@ const Create = memo((props) => {
           <StatusBar style="auto" />
         </>
       )}
+      {/* if deck name is undefined */}
       {deckName === "" && (
         <>
           <Text style={styles.p_description}>Deck Name</Text>

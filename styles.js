@@ -106,6 +106,7 @@ export default StyleSheet.create({
 
   },
   deck_name: {
+    // fontFamily: "Arial",
     fontWeight: "bold",
     fontSize: 24,
     margin: 10,
