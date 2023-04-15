@@ -7,8 +7,10 @@ import styles from "../styles.js";
 
 
 const Home = memo((props) => {
+  // save deck data
   const [decks, setDecks] = useState({});
 
+  // get deck data from async storage
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('decks');
@@ -21,6 +23,7 @@ const Home = memo((props) => {
     }
   }
 
+  // set the data to decks
   const setData = async () => {
     const data = await getData();
     try {
@@ -29,14 +32,15 @@ const Home = memo((props) => {
     }
   }
 
+  // update the decks data
   setData();
 
-  const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]], "deck3": [["9", "10"], ["11", "12"]] } };
-
+  // print all deck names
   const PrintDeck = memo((props) => {
     const { decks } = props;
     const deckNames = Object.keys(decks);
 
+    // shuffle deck
     const shuffleArray = (array) => {
       let newArray = [...array];
       for (let i = newArray.length - 1; i > 0; i--) {
@@ -46,6 +50,7 @@ const Home = memo((props) => {
       return newArray;
     };
 
+    // render all deck
     const renderItem = ({ item }) => (
       <View style={{ padding: 5 }}>
         <Button
