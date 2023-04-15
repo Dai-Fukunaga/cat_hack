@@ -25,16 +25,16 @@ const ShowProblem = (params) => {
 
   return (
     <View style={styles.p_container}>
-      <Text style={styles.p_description}>Front</Text>
       <View style={styles.fc_container}>
         <Text style={styles.p_tandm}>{params["deck"][index][0]}</Text>
       </View>
+      <Text style={styles.p_description}>Front</Text>
       {showMeaning && (
         <>
-          <Text style={styles.p_description}>Back</Text>
           <View style={styles.fc_container}>
             <Text style={styles.p_tandm}>{params["deck"][index][1]}</Text>
           </View>
+          <Text style={styles.p_description}>Back</Text>
         </>
       )}
       <View style={styles.p_button}>

@@ -70,10 +70,9 @@ const Create = memo((props) => {
           {!(deck.length >= 1 || (front.length !== 0 && back.length !== 0)) && (
             <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => {
             }}>
-              <Text style={styles.default_font}>Save</Text>
+              <Text style={styles.default_font}>Save Deck</Text>
             </TouchableOpacity>
           )}
-          <Text style={styles.p_description}>Front</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter front" onChangeText={setFront} value={front}></TextInput>
           </View>
@@ -96,7 +95,7 @@ const Create = memo((props) => {
                 setWarning(true);
               }
             }}>
-              <Text style={styles.default_font}>Add Cards</Text>
+              <Text style={styles.default_font}>Add Card</Text>
             </TouchableOpacity>
           </View>
           <StatusBar style="auto" />
