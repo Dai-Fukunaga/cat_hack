@@ -8,6 +8,14 @@ export default StyleSheet.create({
     borderWidth: 1,
     //width: "95%",
   },
+  containerCreate1: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    height: '15%',
+  },
   containerScroll: {
     flexGrow: 1,
     backgroundColor: "#fff",
