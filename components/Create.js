@@ -4,54 +4,6 @@ import React, { memo, useState } from "react";
 import { Button, Text, View, ScrollView, SafeAreaView, TextInput } from "react-native";
 //import styles from "../styles.js";
 import { registerRootComponent } from 'expo';
-<<<<<<< HEAD
-
-// stylesheet
-import { StyleSheet } from "react-native";
-import { Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
-
-const Create = memo((props) => {
-  const addCard = () => {
-    console.log("Hello");
-  };
-
-  return (
-    <View style={styles.container}>
-      {/* Title Edit */}
-      <View style={styles.containerCreate1}>
-        <View style={{
-          top: 0,
-          flexDirection: 'row',
-          paddingTop: 10,
-          borderWidth: 1,
-        }}>
-          <Text style={styles.header1}>Title: </Text>
-          <TextInput style={styles.titleInput} />
-        </View>
-      </View >
-      {/* Buttons */}
-      <View style={styles.containerCreate2}>
-        <Button title="+ Card" color="#fff" style={styles.btn}
-          onPress={addCard}></Button>
-        <Button title="Save & Close" color="#fff" style={styles.btn}></Button>
-      </View>
-      {/* Scroll View Flash Cards */}
-      <View style={{ ...styles.container, zIndex: -1 }}>
-        <ScrollView contentContainerStyle={styles.containerScroll}>
-          <View style={{
-            marginBottom: 400,
-          }}>
-            <Text style={styles.header1}>Front</Text>
-            <TextInput style={styles.input} />
-            <Text style={styles.header1}>Back</Text>
-            <TextInput style={styles.input} />
-          </View>
-
-        </ScrollView>
-      </View>
-      <StatusBar style="auto" />
-=======
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Create = memo((props) => {
@@ -126,7 +78,6 @@ const Create = memo((props) => {
           </View>
         </>
       )}
->>>>>>> main
     </View>
   );
 });
