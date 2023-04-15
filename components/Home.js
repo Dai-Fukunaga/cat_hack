@@ -102,10 +102,6 @@ const Home = memo((props) => {
       </View>
     );
 
-    const handleButtonPress = () => {
-      console.log("Button clicked!");
-    }
-
     return (
       <FlatList
         data={deckNames}

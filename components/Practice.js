@@ -13,7 +13,6 @@ const ShowProblem = (params) => {
     setShowMeaning(false);
     const newindex = (index + 1) % params["deck"].length;
     if (newindex == 0) {
-      console.log("congratulations");
       params["props"]["navigation"].goBack();
     }
     setIndex(newindex);

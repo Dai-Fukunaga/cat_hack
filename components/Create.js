@@ -39,17 +39,18 @@ const Create = memo((props) => {
 
   // update the deck data to the async storage
   const update = async () => {
+    let cards = [...deck];
     if (front.length !== 0 && back.length !== 0) {
-      setDeck([...deck, [front, back]]);
+      cards = [cards, [front, back]];
+      setDeck(cards);
     }
     const oldDecks = await getData();
-    const newDeck = { [deckName]: deck };
+    const newDeck = { [deckName]: cards };
     setFront("");
     setBack("");
     try {
       await AsyncStorage.setItem('decks', JSON.stringify({ ...oldDecks, ...newDeck }));
     } catch (e) {
-      console.log(e);
     }
     setData();
     props["navigation"].goBack();
