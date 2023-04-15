@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, Text, View, FlatList, ListItem, StyleSheet, Icon, Body } from "react-native";
+import { Button, Text, View, FlatList, ListItem, StyleSheet, Icon, Body, TouchableOpacity } from "react-native";
 import React, { useState, memo } from "react";
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../styles.js";
-
+import { AntDesign, Feather } from '@expo/vector-icons';
 
 const Home = memo((props) => {
   const [decks, setDecks] = useState({});
@@ -43,13 +43,14 @@ const Home = memo((props) => {
 
     const renderItem = ({ item }) => (
       <View style={{ padding: 10 }}>
-        <Button
-          title={item}
+        <TouchableOpacity
+          style={styles.wide_button}
           onPress={() => {
             props.navigation.navigate("Practice", shuffleArray(decks[item]));
           }}
-          style={{ fontSize: 20 }}
-        />
+        >
+          <Text style={styles.default_font}>{item}</Text>
+        </TouchableOpacity>
       </View>
     );
 
@@ -68,10 +69,20 @@ const Home = memo((props) => {
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Edit"
-        onPress={() => props.navigation.navigate("Edit")}
-      />
+      <View style={styles.h_button_container}>
+        <TouchableOpacity
+          style={styles.h_button}
+          onPress={() => props.navigation.navigate("Edit")}
+        >
+          <AntDesign name="plus" size={30} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.h_button}
+          onPress={() => props.navigation.navigate("Edit")}
+        >
+          <AntDesign name="edit" size={30} color="white" />
+        </TouchableOpacity>
+      </View>
       <PrintDeck decks={deck_dict["decks"]} navigation={props.navigation} />
       {/* <Button title="test" icon="login" onPress={() => storeData("tst")} >test</Button>
       <Button title="get" onPress={() => getData()}></Button>

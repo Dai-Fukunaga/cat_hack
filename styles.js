@@ -3,18 +3,52 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
+const colors = {
+  primary: "#555555",
+  backgroundColor: "white",
+  fccolor: "white",
+  // text that is white in default:
+  w_text: "white",
+  // text that is black in default:
+  b_text: "black",
+}
+
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
     //width: "95%",
   },
+  default_font: {
+    color: colors.w_text,
+    fontSize: 20,
+  },
+  h_button_container: {
+    flexDirection: 'row',
+    alignSelf: "flex-end",
+  },
+  h_button: {
+    backgroundColor: colors.primary,
+    margin: 5,
+    borderRadius: 5,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  wide_button: {
+    backgroundColor: colors.primary,
+    padding: 10,
+    borderRadius: 5,
+    width: width * 0.8,
+    alignItems: "center",
+  },
   containerCreate1: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
@@ -22,14 +56,14 @@ export default StyleSheet.create({
   },
   containerScroll: {
     flexGrow: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
   },
   p_container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "flex-start",
     paddingTop: 20,
@@ -52,7 +86,7 @@ export default StyleSheet.create({
     bottom: 75,
   },
   fc_container: {
-    backgroundColor: 'white',
+    backgroundColor: colors.fccolor,
     padding: 20,
     margin: 10,
     borderRadius: 10,
