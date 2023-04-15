@@ -4,9 +4,9 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const colors = {
-  primary: "#555555",
-  deck: "lightgray",
-  deck_button: "#999999",
+  primary: "#666666",
+  deck: "#e0e0e0",
+  deck_button: "#e0e0e0",
   backgroundColor: "white",
   fccolor: "white",
   // text that is white in default:
@@ -21,36 +21,52 @@ export default StyleSheet.create({
     backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
     //width: "95%",
   },
   default_font: {
     color: colors.w_text,
     fontSize: 20,
   },
+  button_font: {
+    color: colors.w_text,
+    fontWeight: "bold",
+    fontSize: 24,
+    margin: 10,
+  },
   deck_button_container: {
     flexDirection: 'row',
     alignSelf: "flex-end",
   },
   h_button: {
+    flexDirection: 'row',
     backgroundColor: colors.primary,
     margin: 5,
     borderRadius: 5,
-    width: 50,
+    width: 200,
     height: 50,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
   },
   deck_button: {
     backgroundColor: colors.deck_button,
+    borderRadius: 5,
     margin: 5,
     marginTop: 25,
-    borderRadius: 5,
     width: 40,
     height: 40,
     alignSelf: 'flex-end',
     alignItems: 'center',
     justifyContent: 'center',
+    //sita ha kimo deza
+    shadowColor: '#ffffff',
+    shadowOffset: { width: -1.5, height: -1.5 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 5,
   },
   wide_button: {
     backgroundColor: colors.primary,
@@ -71,9 +87,25 @@ export default StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.5,
     shadowRadius: 1.5,
+    //sitano ha kimo deza
+    // borderRadius: 10,
+    // backgroundColor: '#e0e0e0',
+    // shadowColor: '#bebebe',
+    // shadowOffset: {
+    //   width: 3,
+    //   height: 3,
+    // },
+    // shadowOpacity: 1,
+    // shadowRadius: 4,
+    // elevation: 2,
+    // shadowColor: 'white',
+    // shadowOffset: {
+    //   width: -3,
+    //   height: -3,
+    // },
+
   },
   deck_name: {
-    fontFamily: "Arial",
     fontWeight: "bold",
     fontSize: 24,
     margin: 10,
