@@ -1,7 +1,7 @@
 
 import { StatusBar } from "expo-status-bar";
 import React, { memo, useState } from "react";
-import { Button, Text, View, ScrollView, SafeAreaView, TextInput } from "react-native";
+import { Button, Text, View, ScrollView, SafeAreaView, TextInput, StyleSheet } from "react-native";
 //import styles from "../styles.js";
 import { registerRootComponent } from 'expo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
