@@ -8,25 +8,30 @@ import styles from "../styles.js";
 
 const Home = memo((props) => {
   const [decks, setDecks] = useState({});
-  // const addDeck = async (deck) => {
-  //   try {
-  //     await AsyncStorage.setItem('decks', deck);
-  //   } catch (e) {
-  //     // saving error
-  //   }
-  // }
 
-  // const getDeck = async () => {
-  //   try {
-  //     const jsonValue = await AsyncStorage.getItem('decks');
-  //     setStr(jsonValue);
-  //     return jsonValue != null ? JSON.parse(jsonValue) : null;
-  //   } catch (e) {
-  //     // error reading value
-  //   }
-  // }
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('decks');
+      if (value !== null) {
+        return JSON.parse(value);
+      } else {
+        return {};
+      }
+    } catch (e) {
+    }
+  }
 
-  const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]] } };
+  const setData = async () => {
+    const data = await getData();
+    try {
+      setDecks(data);
+    } catch (e) {
+    }
+  }
+
+  setData();
+
+  const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]], "deck3": [["9", "10"], ["11", "12"]] } };
 
   const PrintDeck = memo((props) => {
     const { decks } = props;
@@ -42,7 +47,7 @@ const Home = memo((props) => {
     };
 
     const renderItem = ({ item }) => (
-      <View style={{ padding: 10 }}>
+      <View style={{ padding: 5 }}>
         <Button
           title={item}
           onPress={() => {
@@ -64,15 +69,14 @@ const Home = memo((props) => {
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Edit"
-        onPress={() => props.navigation.navigate("Edit")}
-      />
-      <PrintDeck decks={deck_dict["decks"]} navigation={props.navigation} />
-      {/* <Button title="test" icon="login" onPress={() => storeData("tst")} >test</Button>
-      <Button title="get" onPress={() => getData()}></Button>
-      <Text>{str}</Text>
-      <StatusBar style="auto" /> */}
+      <View style={styles.editButton}>
+        <Button
+          title="Edit"
+          onPress={() => props.navigation.navigate("Edit")}
+        />
+        <Button title="Create" onPress={() => props.navigation.navigate("Create")}></Button>
+      </View>
+      <PrintDeck decks={decks} navigation={props.navigation} />
     </View>
   );
 });
@@ -90,5 +94,9 @@ const style = StyleSheet.create({
   checkbox: {
     color: 'grey',
     fontSize: 20,
+  },
+  editButton: {
+    alignItems: "flex-end",
+    width: "0%"
   }
 });
