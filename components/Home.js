@@ -17,7 +17,7 @@ const Home = memo((props) => {
       if (value !== null) {
         return JSON.parse(value);
       } else {
-        return {};
+        return null;
       }
     } catch (e) {
     }
@@ -33,7 +33,21 @@ const Home = memo((props) => {
   }
 
   // update the decks data
-  setData();
+  // setData();
+
+  const deleteDeck = async (item) => {
+    const decks = await getData();
+    delete decks[item];
+    await update(decks);
+    setData();
+  }
+
+  const update = async (decks) => {
+    try {
+      await AsyncStorage.setItem('decks', JSON.stringify(decks));
+    } catch (e) {
+    }
+  }
 
   // print all deck names
   const PrintDeck = memo((props) => {
@@ -67,7 +81,7 @@ const Home = memo((props) => {
             {/* edit button */}
             <TouchableOpacity
               style={styles.deck_button}
-              onPress={() => props.navigation.navigate("Edit")}
+              onPress={() => { props.navigation.navigate("Edit") }}
             >
               <AntDesign name="edit" size={30} color="#555555" />
             </TouchableOpacity>
@@ -75,7 +89,7 @@ const Home = memo((props) => {
             {/* trash button */}
             <TouchableOpacity
               style={[styles.deck_button, { backgroundColor: 'red' }]}
-              onPress={() => props.navigation.navigate("Edit")}
+              onPress={() => { deleteDeck(item) }}
             >
               <Feather name="trash-2" size={30} color="white" />
             </TouchableOpacity>
@@ -104,7 +118,7 @@ const Home = memo((props) => {
       {/* Plus Button */}
       <TouchableOpacity
         style={styles.h_button}
-        onPress={() => props.navigation.navigate("Create")}
+        onPress={() => { props.navigation.navigate("Create"); }}
       >
         <AntDesign name="plus" size={30} color="white" />
       </TouchableOpacity>

@@ -35,6 +35,8 @@ const Create = memo((props) => {
 
   // update the deck data to the async storage
   const update = async () => {
+    const oldDecks = await getData();
+    const newDeck = { [deckName]: deck };
     if (front !== "" && back !== "") {
       addCards();
     }

@@ -73,7 +73,7 @@ export default StyleSheet.create({
     shadowRadius: 1.5,
   },
   deck_name: {
-    fontFamily: "Arial",
+    // fontFamily: "Arial",
     fontWeight: "bold",
     fontSize: 24,
     margin: 10,
