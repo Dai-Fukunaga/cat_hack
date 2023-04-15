@@ -24,5 +24,26 @@ export default StyleSheet.create({
   },
   header1: {
     fontSize: 32,
+  },
+  fc_container: {
+    backgroundColor: 'white',
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    borderColor: 'gray',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 2,
+    width: "90%",
+    height: "20%",
+  },
+  input:{
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    padding: 10,
   }
 });
