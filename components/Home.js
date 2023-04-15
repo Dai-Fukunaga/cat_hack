@@ -26,16 +26,28 @@ const Home = memo((props) => {
     }
   }
 
-  const deck_dict = {"decks":{"deck1":[["1","2"],["3","4"]], "deck2":[["5","6"],["7","8"]]}};
+  const deck_dict = { "decks": { "deck1": [["1", "2"], ["3", "4"]], "deck2": [["5", "6"], ["7", "8"]] } };
 
   const PrintDeck = memo((props) => {
     const { decks } = props;
     const deckNames = Object.keys(decks);
+
     const renderItem = ({ item }) => (
       <View style={{ padding: 10 }}>
-        <Text style={{fontSize: 20}}>{item}</Text>
+        <Button
+          title={item}
+          onPress={() => {
+            //handleButtonPress();
+            props.navigation.navigate("Practice");
+          }}
+          style={{ fontSize: 20 }}
+        />
       </View>
     );
+
+    const handleButtonPress = () => {
+      console.log("Button clicked!");
+    }
 
     return (
       <FlatList
@@ -52,7 +64,7 @@ const Home = memo((props) => {
         title="Edit"
         onPress={() => props.navigation.navigate("Edit")}
       />
-      <PrintDeck decks={deck_dict["decks"]}></PrintDeck>
+      <PrintDeck decks={deck_dict["decks"]} navigation={props.navigation} />
       {/* <Button title="test" icon="login" onPress={() => storeData("tst")} >test</Button>
       <Button title="get" onPress={() => getData()}></Button>
       <Text>{str}</Text>
