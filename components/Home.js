@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, Text, View, FlatList, ListItem, StyleSheet, Icon, Body } from "react-native";
+import { Button, Text, View, FlatList, ListItem, StyleSheet, Icon, Body, TouchableOpacity } from "react-native";
 import React, { useState, memo } from "react";
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../styles.js";
-
+import { AntDesign, Feather } from '@expo/vector-icons';
 
 const Home = memo((props) => {
   // save deck data
@@ -52,16 +52,43 @@ const Home = memo((props) => {
 
     // render all deck
     const renderItem = ({ item }) => (
-      <View style={{ padding: 5 }}>
-        <Button
-          title={item}
+      <View style={{ padding: 10 }}>
+        {/* the deck button */}
+        <TouchableOpacity
+          style={styles.deck_container}
           onPress={() => {
             props.navigation.navigate("Practice", shuffleArray(decks[item]));
           }}
-          style={{ fontSize: 20 }}
-        />
+        >
+          <Text style={styles.deck_name}>{item}</Text>
+
+          <View style={styles.deck_button_container}>
+
+            {/* edit button */}
+            <TouchableOpacity
+              style={styles.deck_button}
+              onPress={() => props.navigation.navigate("Edit")}
+            >
+              <AntDesign name="edit" size={30} color="#555555" />
+            </TouchableOpacity>
+
+            {/* trash button */}
+            <TouchableOpacity
+              style={[styles.deck_button, { backgroundColor: 'red' }]}
+              onPress={() => props.navigation.navigate("Edit")}
+            >
+              <Feather name="trash-2" size={30} color="white" />
+            </TouchableOpacity>
+
+          </View>
+
+        </TouchableOpacity>
       </View>
     );
+
+    const handleButtonPress = () => {
+      console.log("Button clicked!");
+    }
 
     return (
       <FlatList
@@ -74,13 +101,13 @@ const Home = memo((props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.editButton}>
-        <Button
-          title="Edit"
-          onPress={() => props.navigation.navigate("Edit")}
-        />
-        <Button title="Create" onPress={() => props.navigation.navigate("Create")}></Button>
-      </View>
+      {/* Plus Button */}
+      <TouchableOpacity
+        style={styles.h_button}
+        onPress={() => props.navigation.navigate("Create")}
+      >
+        <AntDesign name="plus" size={30} color="white" />
+      </TouchableOpacity>
       <PrintDeck decks={decks} navigation={props.navigation} />
     </View>
   );

@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { memo, useState } from "react";
-import { Button, Text, View, Dimensions } from "react-native";
+import { TouchableOpacity, Text, View, Dimensions } from "react-native";
 import styles from "../styles.js";
 
 const { width, height } = Dimensions.get('window');
@@ -25,23 +25,22 @@ const ShowProblem = (params) => {
 
   return (
     <View style={styles.p_container}>
-      <Text style={styles.p_description}>Term</Text>
+      <Text style={styles.p_description}>Front</Text>
       <View style={styles.fc_container}>
         <Text style={styles.p_tandm}>{params["deck"][index][0]}</Text>
       </View>
       {showMeaning && (
         <>
-          <Text style={styles.p_description}>Meaning</Text>
+          <Text style={styles.p_description}>Back</Text>
           <View style={styles.fc_container}>
             <Text style={styles.p_tandm}>{params["deck"][index][1]}</Text>
           </View>
         </>
       )}
       <View style={styles.p_button}>
-        <Button
-          title={showMeaning ? "Next Card" : "Show Meaning"}
-          onPress={showMeaning ? handleNextCard : handleShowMeaning}
-        />
+        <TouchableOpacity style={styles.wide_button} onPress={showMeaning ? handleNextCard : handleShowMeaning}>
+          <Text style={styles.default_font}>{showMeaning ? "Next Card" : "Show Back"}</Text>
+        </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
     </View>
