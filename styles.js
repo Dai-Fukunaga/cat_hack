@@ -76,6 +76,15 @@ export default StyleSheet.create({
     width: width * 0.8,
     alignItems: "center",
   },
+  save_button: {
+    alignSelf: "flex-end",
+    marginRight: width * 0.05,
+    backgroundColor: colors.primary,
+    padding: 10,
+    borderRadius: 5,
+    width: width * 0.35,
+    alignItems: "center",
+  },
   deck_container: {
     backgroundColor: colors.deck,
     paddingTop: 10,
@@ -149,7 +158,7 @@ export default StyleSheet.create({
     marginDown: 20,
     fontSize: 20,
     fontWeight: '500',
-    color: 'black',
+    color: '#555555',
   },
   p_tandm: {
     textAlign: 'center',
@@ -159,7 +168,7 @@ export default StyleSheet.create({
   },
   p_button: {
     position: 'absolute',
-    bottom: 75,
+    bottom: 30,
   },
   fc_container: {
     backgroundColor: colors.fccolor,
