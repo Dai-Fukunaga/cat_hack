@@ -1,7 +1,7 @@
 
 import { StatusBar } from "expo-status-bar";
 import React, { memo, useState } from "react";
-import { Button, Text, View, ScrollView, SafeAreaView, TextInput } from "react-native";
+import { Button, Text, View, ScrollView, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
 import styles from "../styles.js";
 import { registerRootComponent } from 'expo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -56,7 +56,13 @@ const Create = memo((props) => {
       {/* if deck name is defined */}
       {deckName !== "" && (
         <>
-          <Text>{deckName}</Text>
+          <Text style={styles.create_deck_name}>{deckName}</Text>
+          <TouchableOpacity style={styles.wide_button} onPress={() => { update(); props["navigation"].goBack(); }}>
+            <Text style={styles.default_font}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => { update(); props["navigation"].goBack(); }}>
+            <Text style={styles.default_font}>Save</Text>
+          </TouchableOpacity>
           <Text style={styles.p_description}>Front</Text>
           <View style={styles.fc_container}>
             <TextInput style={styles.p_tandm} placeholder="Enter front" onChangeText={setFront} value={front}></TextInput>
@@ -71,19 +77,21 @@ const Create = memo((props) => {
             </>
           )}
           <View style={styles.p_button}>
-            <Button title="Add Cards" onPress={() => {
+            <TouchableOpacity style={styles.wide_button} onPress={() => {
               if (front !== "" && back !== "") {
                 addCards();
                 setWarning(false);
               } else {
                 setWarning(true);
               }
-            }}></Button>
-            <Button title="Save" onPress={() => { update(); props["navigation"].goBack(); }}></Button>
+            }}>
+              <Text style={styles.default_font}>Add Cards</Text>
+            </TouchableOpacity>
           </View>
           <StatusBar style="auto" />
         </>
-      )}
+      )
+      }
       {/* if deck name is undefined */}
       {deckName === "" && (
         <>
@@ -97,18 +105,20 @@ const Create = memo((props) => {
             </>
           )}
           <View style={styles.p_button}>
-            <Button title="Make a new deck" onPress={() => {
+            <TouchableOpacity style={styles.wide_button} onPress={() => {
               if (tmpName === "") {
                 setWarning(true);
               } else {
                 setDeckName(tmpName);
                 setWarning(false);
               }
-            }}></Button>
+            }}>
+              <Text style={styles.default_font}>Make a new deck</Text>
+            </TouchableOpacity>
           </View>
         </>
       )}
-    </View>
+    </View >
   );
 });
 

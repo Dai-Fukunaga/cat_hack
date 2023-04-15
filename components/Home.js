@@ -123,6 +123,7 @@ const Home = memo((props) => {
         onPress={() => { props.navigation.navigate("Create", { setData: setData }); }}
       >
         <AntDesign name="plus" size={30} color="white" />
+        <Text style={styles.button_font}>Add Deck</Text>
       </TouchableOpacity>
       <PrintDeck decks={decks} navigation={props.navigation} />
     </View>
