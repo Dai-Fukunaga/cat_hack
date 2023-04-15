@@ -10,6 +10,8 @@ const Home = memo((props) => {
   // save deck data
   const [decks, setDecks] = useState({});
 
+  console.log(decks.length)
+
   useEffect(() => {
     setData();
   }, [])
