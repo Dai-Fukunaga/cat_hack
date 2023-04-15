@@ -18,7 +18,7 @@ function RootStack() {
       <Stack.Screen name="Practice" component={Practice} />
       <Stack.Screen name="Edit" component={Edit} />
       <Stack.Screen name="Create" component={Create} />
-      
+
     </Stack.Navigator>
   );
 }
