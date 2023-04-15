@@ -1,7 +1,7 @@
 
-import { StatusBar, useState, memo } from "expo-status-bar";
-import React from "react";
-import { Button, Text, View, ScrollView, SafeAreaView } from "react-native";
+import { StatusBar, useState } from "expo-status-bar";
+import React, { memo } from "react";
+import { Button, Text, View, ScrollView, SafeAreaView, TextInput } from "react-native";
 import styles from "../styles.js";
 import { registerRootComponent } from 'expo';
 
@@ -10,12 +10,13 @@ const Create = memo((props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header1}>Front</Text>
-      {/* <TextInput
+      <TextInput
         style={styles.input}
-
-      /> */}
+      />
       <Text style={styles.header1}>Back</Text>
-
+      <TextInput
+        style={styles.input}
+      />
 
       {/* <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.containerScroll}>

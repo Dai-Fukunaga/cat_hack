@@ -39,11 +39,12 @@ export default StyleSheet.create({
     width: "90%",
     height: "20%",
   },
-  input:{
-    height: 40,
+  input: {
+    height: "10%",
+    width: "80%",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    padding: 10,
+    // padding: 10,
   }
 });
