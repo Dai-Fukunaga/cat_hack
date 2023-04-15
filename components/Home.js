@@ -43,13 +43,35 @@ const Home = memo((props) => {
 
     const renderItem = ({ item }) => (
       <View style={{ padding: 10 }}>
+        {/* the deck button */}
         <TouchableOpacity
-          style={styles.wide_button}
+          style={styles.deck_container}
           onPress={() => {
             props.navigation.navigate("Practice", shuffleArray(decks[item]));
           }}
         >
-          <Text style={styles.default_font}>{item}</Text>
+          <Text style={styles.deck_name}>{item}</Text>
+
+          <View style={styles.deck_button_container}>
+
+            {/* edit button */}
+            <TouchableOpacity
+              style={styles.deck_button}
+              onPress={() => props.navigation.navigate("Edit")}
+            >
+              <AntDesign name="edit" size={30} color="#555555" />
+            </TouchableOpacity>
+
+            {/* trash button */}
+            <TouchableOpacity
+              style={[styles.deck_button, { backgroundColor: 'red' }]}
+              onPress={() => props.navigation.navigate("Edit")}
+            >
+              <Feather name="trash-2" size={30} color="white" />
+            </TouchableOpacity>
+
+          </View>
+
         </TouchableOpacity>
       </View>
     );
@@ -69,20 +91,13 @@ const Home = memo((props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.h_button_container}>
-        <TouchableOpacity
-          style={styles.h_button}
-          onPress={() => props.navigation.navigate("Edit")}
-        >
-          <AntDesign name="plus" size={30} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.h_button}
-          onPress={() => props.navigation.navigate("Edit")}
-        >
-          <AntDesign name="edit" size={30} color="white" />
-        </TouchableOpacity>
-      </View>
+      {/* Plus Button */}
+      <TouchableOpacity
+        style={styles.h_button}
+        onPress={() => props.navigation.navigate("Create")}
+      >
+        <AntDesign name="plus" size={30} color="white" />
+      </TouchableOpacity>
       <PrintDeck decks={deck_dict["decks"]} navigation={props.navigation} />
       {/* <Button title="test" icon="login" onPress={() => storeData("tst")} >test</Button>
       <Button title="get" onPress={() => getData()}></Button>

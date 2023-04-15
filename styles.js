@@ -5,6 +5,8 @@ const { width, height } = Dimensions.get('window');
 
 const colors = {
   primary: "#555555",
+  deck: "lightgray",
+  deck_button: "#999999",
   backgroundColor: "white",
   fccolor: "white",
   // text that is white in default:
@@ -26,7 +28,7 @@ export default StyleSheet.create({
     color: colors.w_text,
     fontSize: 20,
   },
-  h_button_container: {
+  deck_button_container: {
     flexDirection: 'row',
     alignSelf: "flex-end",
   },
@@ -39,12 +41,43 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  deck_button: {
+    backgroundColor: colors.deck_button,
+    margin: 5,
+    marginTop: 25,
+    borderRadius: 5,
+    width: 40,
+    height: 40,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   wide_button: {
     backgroundColor: colors.primary,
     padding: 10,
     borderRadius: 5,
     width: width * 0.8,
     alignItems: "center",
+  },
+  deck_container: {
+    backgroundColor: colors.deck,
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 5,
+    borderRadius: 5,
+    width: width * 0.85,
+    height: 130,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
+  },
+  deck_name: {
+    fontFamily: "Arial",
+    fontWeight: "bold",
+    fontSize: 24,
+    margin: 10,
+    color: '#333333',
   },
   containerCreate1: {
     flex: 1,
