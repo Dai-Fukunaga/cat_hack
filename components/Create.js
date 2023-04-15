@@ -10,51 +10,47 @@ import { StyleSheet } from "react-native";
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
-
-
-
 const Create = memo((props) => {
+  const addCard = () => {
+    console.log("Hello");
+  };
+
   return (
-    <View style={styles.containerCreate1}>
-      <View style={{
-        flexDirection: 'row',
-        height: "5%",
-        paddingTop: 10,
-        //borderWidth: 1,
-      }}>
-        <Text style={styles.header1}>Title: </Text>
-        <TextInput style={styles.titleInput} />
-      </View>
-
-      {/* <SafeAreaView style={styles.container}> */}
-      <ScrollView contentContainerStyle={styles.containerScroll}>
-        <View style={styles.containerCreate1}>
-          <View style={{
-            flexDirection: 'row',
-            height: "20%",
-            paddingTop: 10,
-            borderWidth: 1,
-            width: '100%',
-          }}>
-            <Button title="Add Card"></Button>
-            <Button title="Close"></Button>
-          </View>
+    <View style={styles.container}>
+      {/* Title Edit */}
+      <View style={styles.containerCreate1}>
+        <View style={{
+          top: 0,
+          flexDirection: 'row',
+          paddingTop: 10,
+          borderWidth: 1,
+        }}>
+          <Text style={styles.header1}>Title: </Text>
+          <TextInput style={styles.titleInput} />
         </View>
+      </View >
+      {/* Buttons */}
+      <View style={styles.containerCreate2}>
+        <Button title="+ Card" color="#fff" style={styles.btn}
+          onPress={addCard}></Button>
+        <Button title="Save & Close" color="#fff" style={styles.btn}></Button>
+      </View>
+      {/* Scroll View Flash Cards */}
+      <View style={{ ...styles.container, zIndex: -1 }}>
+        <ScrollView contentContainerStyle={styles.containerScroll}>
+          <View style={{
+            marginBottom: 400,
+          }}>
+            <Text style={styles.header1}>Front</Text>
+            <TextInput style={styles.input} />
+            <Text style={styles.header1}>Back</Text>
+            <TextInput style={styles.input} />
+          </View>
 
-        <Text style={styles.header1}>Front</Text>
-        <TextInput style={styles.input} />
-        <Text style={styles.header1}>Back</Text>
-        <TextInput style={styles.input} />
-      </ScrollView>
-      {/* </SafeAreaView> */}
-
-      {/* <Text>Create</Text>
-        <Button
-          title="Create"
-          onPress={() => this.props.navigation.navigate("Home")}
-        /> */}
+        </ScrollView>
+      </View>
       <StatusBar style="auto" />
-    </View >
+    </View>
   );
 });
 
@@ -66,31 +62,49 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    //borderWidth: 1,
-    //width: "95%",
   },
   containerCreate1: {
     flex: 1,
+    position: 'absolute',
+    top: 0,
     backgroundColor: "#fff",
-    //borderWidth: 1,
-    height: '15%',
-    //width: '85%',
+    borderWidth: 1,
+    height: '10%',
+    width: '100%',
     alignItems: "center",
     justifyContent: "center",
   },
-  containerScroll: {
-    flexGrow: 1,
-    backgroundColor: "#fff",
+  containerCreate2: {
+    flex: 1,
+    position: 'absolute',
+    top: '10%',
+    backgroundColor: "#ccc",
+    borderWidth: 1,
+    height: '10%',
+    width: '100%',
     alignItems: "center",
     justifyContent: "center",
-    //borderWidth: 1,
-    marginTop: 0,
-    height: '75%',
+    flexDirection: 'row',
+    paddingTop: 10,
+    borderWidth: 1,
+    width: '100%',
+  },
+  containerScroll: {
+    top: '20%',
+    //position: 'relative',
+    flexGrow: 1,
+    backgroundColor: "#aaa",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    zIndex: -1,
   },
   scrollView: {
     backgroundColor: 'white',
     borderWidth: 1,
-    height: '75%',
+    height: '100%',
+    transform: [{ translateZ: -1 }],
+
   },
   header1: {
     fontSize: 20,
@@ -107,10 +121,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-
     backgroundColor: 'white',
 
-    margin: 10,
+    margin: 20,
     borderRadius: 10,
     borderColor: 'gray',
     shadowColor: 'black',
@@ -121,5 +134,14 @@ const styles = StyleSheet.create({
     height: 100,
     width: 300,
     // padding: 10,
-  }
+  },
+  btn: {
+    //width: '30%',
+    //height: '50%',
+    //top: 0,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: "#aaf",
+
+  },
 });
