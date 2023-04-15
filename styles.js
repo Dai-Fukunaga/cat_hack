@@ -11,10 +11,12 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   p_container: {
-    flex: 0.8,
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    paddingTop: 20,
+
   },
   p_description: {
     fontSize: 20,
@@ -23,12 +25,14 @@ export default StyleSheet.create({
     margin: 8,
   },
   p_tandm: {
+    textAlign: 'center',
     fontSize: 20,
     fontWeight: '400',
     margin: 8,
   },
   p_button: {
-    flex: 0.2
+    position: 'absolute',
+    bottom: 75,
   },
   fc_container: {
     backgroundColor: 'white',
@@ -43,6 +47,8 @@ export default StyleSheet.create({
     elevation: 2,
     width: "90%",
     height: "20%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   modal: {
     flex: 1,
