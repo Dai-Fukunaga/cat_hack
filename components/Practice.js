@@ -1,50 +1,55 @@
 import { StatusBar } from "expo-status-bar";
 import React, { memo, useState } from "react";
-import { Button, Text, View, Dimensions } from "react-native";
+import { TouchableOpacity, Text, View, Dimensions } from "react-native";
 import styles from "../styles.js";
 
 const { width, height } = Dimensions.get('window');
 
-const Practice = memo((props) => {
-
-  const deck_dict = { "decks": { "deck1": [[1, 2], [3, 4]], "deck2": [[5, 6], [7, 8]] } };
-  //decks_dict["decks"]
-  //Controls if Show meaning is pressed or not
+const ShowProblem = (params) => {
   const [showMeaning, setShowMeaning] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const handleNextCard = (props) => {
+    setShowMeaning(false);
+    const newindex = (index + 1) % params["deck"].length;
+    if (newindex == 0) {
+      console.log("congratulations");
+      params["props"]["navigation"].goBack();
+    }
+    setIndex(newindex);
+  };
 
   const handleShowMeaning = () => {
     setShowMeaning(true);
   };
 
-  const handleNextCard = () => {
-    setShowMeaning(false);
-    // do something else
-    console.log("next card pressed")
-  };
-
   return (
     <View style={styles.p_container}>
-      <Text style={styles.p_description}>Term</Text>
+      <Text style={styles.p_description}>Front</Text>
       <View style={styles.fc_container}>
-        <Text style={styles.p_tandm}>日本aklsebflawjfblawifblawibefawbilfbawfbliaew</Text>
+        <Text style={styles.p_tandm}>{params["deck"][index][0]}</Text>
       </View>
       {showMeaning && (
         <>
-          <Text style={styles.p_description}>Meaning</Text>
+          <Text style={styles.p_description}>Back</Text>
           <View style={styles.fc_container}>
-            <Text style={styles.p_tandm}>Japan</Text>
+            <Text style={styles.p_tandm}>{params["deck"][index][1]}</Text>
           </View>
         </>
       )}
-      {/* make button location absolute*/}
       <View style={styles.p_button}>
-        <Button
-          title={showMeaning ? "Next Card" : "Show Meaning"}
-          onPress={showMeaning ? handleNextCard : handleShowMeaning}
-        />
+        <TouchableOpacity style={styles.wide_button} onPress={showMeaning ? handleNextCard : handleShowMeaning}>
+          <Text style={styles.default_font}>{showMeaning ? "Next Card" : "Show Back"}</Text>
+        </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
-    </View >
+    </View>
+  )
+};
+
+const Practice = memo((props) => {
+  return (
+    <ShowProblem deck={props.route.params} props={props}></ShowProblem>
   );
 });
 
