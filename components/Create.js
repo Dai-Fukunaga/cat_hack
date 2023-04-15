@@ -1,10 +1,12 @@
 
 import { StatusBar } from "expo-status-bar";
 import React, { memo, useState } from "react";
-import { Button, Text, View, ScrollView, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
+import { Button, Text, View, ScrollView, SafeAreaView, TouchableOpacity, TextInput, Dimensions } from "react-native";
 import styles from "../styles.js";
 import { registerRootComponent } from 'expo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const { width, height } = Dimensions.get('window');
 
 const Create = memo((props) => {
   const [deckName, setDeckName] = useState("");
@@ -62,14 +64,14 @@ const Create = memo((props) => {
         <>
           <Text style={styles.create_deck_name}>{deckName}</Text>
           {(deck.length >= 1 || (front.length !== 0 && back.length !== 0)) && (
-            <TouchableOpacity style={styles.wide_button} onPress={() => {
+            <TouchableOpacity style={styles.save_button} onPress={() => {
               update();
             }}>
-              <Text style={styles.default_font}>Save</Text>
+              <Text style={styles.default_font}>Save Deck</Text>
             </TouchableOpacity>
           )}
           {!(deck.length >= 1 || (front.length !== 0 && back.length !== 0)) && (
-            <TouchableOpacity style={{ ...styles.wide_button, backgroundColor: "#DDDDDD" }} onPress={() => {
+            <TouchableOpacity style={{ ...styles.save_button, backgroundColor: "#DDDDDD" }} onPress={() => {
             }}>
               <Text style={styles.default_font}>Save Deck</Text>
             </TouchableOpacity>
@@ -84,7 +86,7 @@ const Create = memo((props) => {
           <Text style={styles.p_description}>Back</Text>
           {warning && (
             <>
-              <Text>FIll out both sides of the cards</Text>
+              <Text style={{ color: 'red' }}>Fill out both sides of the cards</Text>
             </>
           )}
           <View style={styles.p_button}>
@@ -112,12 +114,12 @@ const Create = memo((props) => {
           </View>
           {warning && (
             <>
-              <Text>Please input the deck name</Text>
+              <Text style={{ color: 'red' }}>Please input the deck name</Text>
             </>
           )}
           {deckNameWarning && (
             <>
-              <Text>Deck name already exists</Text>
+              <Text style={{ color: 'red' }}>Deck name already exists</Text>
             </>
           )}
           <View style={styles.p_button}>
