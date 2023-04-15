@@ -12,6 +12,10 @@ class Home extends React.Component {
           title="Home"
           onPress={() => this.props.navigation.navigate("Home")}
         />
+        <Button
+          title="Create Set"
+          onPress={() => this.props.navigation.navigate("Create")}
+        />
         <StatusBar style="auto" />
       </View>
     );
