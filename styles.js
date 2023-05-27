@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window');
 
 const colors = {
   primary: "#666666",
-  deck: "#e0e0e0",
+  deck: "#f7f7f7",
   deck_button: "#e0e0e0",
   backgroundColor: "white",
   fccolor: "white",
