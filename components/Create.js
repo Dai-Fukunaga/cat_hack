@@ -43,8 +43,12 @@ const Create = memo((props) => {
   const update = async () => {
     let cards = [...deck];
     if (front.length !== 0 && back.length !== 0) {
-      cards = [cards, [front, back]];
-      setDeck(cards);
+      if (cards.length === 0) {
+        cards = [[front, back]];
+      } else {
+        cards = [cards, [front, back]];
+        setDeck(cards);
+      }
     }
     const oldDecks = await getData();
     const newDeck = { [deckName]: cards };

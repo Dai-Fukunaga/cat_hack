@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Text, View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 //import styles from "../styles.js";
 import { memo } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Edit = memo((props) => {
   // const deck_dict = { "decks": { "deck1": [[1, 2], [3, 4]], "deck2": [[5, 6], [7, 8]] } };
