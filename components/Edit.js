@@ -1,63 +1,96 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Button, Text, View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-//import styles from "../styles.js";
 import { memo } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FlatList } from "react-native-gesture-handler";
+import styles from "../styles.js";
+import { AntDesign, Feather } from '@expo/vector-icons';
 
 const Edit = memo((props) => {
-  // const deck_dict = { "decks": { "deck1": [[1, 2], [3, 4]], "deck2": [[5, 6], [7, 8]] } };
-  // const cards = { "deck1": [["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"]] };
-  const arr = [["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"], ["asdfghjkl;", "qwertyuiop"], ["drtyhjk,", ",majsuderifogl"], ["polkmnbvcxser", "1234567890"]];
-  //decks_dict["decks"]
-  //Controls if Show meaning is pressed or not
-  //const [showMeaning, setShowMeaning] = useState(false);
+  var { setData, deck, deckName } = props.route.params;
+  console.log({ [deckName]: deck });
+
+  // get deck data from the async storage
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('decks');
+      if (value !== null) {
+        return JSON.parse(value);
+      } else {
+        return {};
+      }
+    } catch (e) {
+    }
+  }
+
+  const update = async () => {
+    const oldDecks = await getData();
+    const newDeck = { [deckName]: deck };
+    try {
+      await AsyncStorage.setItem("decks", JSON.stringify({ ...oldDecks, ...newDeck }));
+    } catch (e) {
+    }
+    setData();
+    props["navigation"].goBack();
+  }
+
+  const renderItem = ({ item }) => (
+    <View style={{ padding: 10 }}>
+      <TouchableOpacity style={styles.deck_container}>
+        <Text style={styles.deck_name}>{item[0]}</Text>
+        <View style={styles.deck_button_container}>
+          {/* edit button */}
+          <TouchableOpacity
+            style={styles.deck_button}
+            onPress={() => { }}
+          >
+            <AntDesign name="edit" size={30} color="#555555" />
+          </TouchableOpacity>
+          {/* trash button */}
+          <TouchableOpacity
+            style={[styles.deck_button, { backgroundColor: 'red' }]}
+            onPress={() => { }}
+          >
+            <Feather name="trash-2" size={30} color="white" />
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
-    <View style={styles.container}>
-      <Button title="Close" style={{
-        top: 0,
-      }}></Button>
-      <ScrollView contentContainerStyle={styles.tbl}>
-        <View>
-          <View style={{ flexDirection: 'row', }}>
-            {/* Header of the Table */}
-            <Text style={styles.th}>Term</Text>
-            <Text style={styles.th}>Def</Text>
-          </View>
-          {arr.map(([term, def], index) => (
-            <View key={index} style={{ ...styles.tbl, borderWidth: 1, }}>
-              {/* Term with Touchable Opacity iterated */}
-              <TouchableOpacity style={styles.card}><Text style={styles.card}>{term}</Text></TouchableOpacity>
-              {/* Def iterated */}
-              <TouchableOpacity style={styles.card}><Text style={styles.card}>{def}</Text></TouchableOpacity>
-            </View>
-          ))}
-        </View>
-      </ScrollView >
+    // <View style={styles.container}>
+    //   <ScrollView contentContainerStyle={styles.tbl}>
+    //     <View>
+    //       <View style={{ flexDirection: 'row', }}>
+    //         {/* Header of the Table */}
+    //         <Text style={styles.th}>Front</Text>
+    //         <Text style={styles.th}>Back</Text>
+    //       </View>
+    //       {deck.map(([term, def], index) => (
+    //         <View key={index} style={{ ...styles.tbl, borderWidth: 1, }}>
+    //           {/* Term with Touchable Opacity iterated */}
+    //           <TouchableOpacity style={styles.card}><Text style={styles.card}>{term}</Text></TouchableOpacity>
+    //           {/* Def iterated */}
+    //           <TouchableOpacity style={styles.card}><Text style={styles.card}>{def}</Text></TouchableOpacity>
+    //         </View>
+    //       ))}
+    //     </View>
+    //   </ScrollView>
+    //   <Button title="Save" style={{ top: 0, }} onPress={() => { update() }}></Button>
+    //   <StatusBar style="auto" />
+    // </View>
+    <View>
+      <FlatList
+        data={deck}
+        renderItem={renderItem}
+        keyExtractor={(deckName) => deckName}
+      />
+      <Button title="Save" style={{ top: 0, }} onPress={() => { update() }}></Button>
       <StatusBar style="auto" />
-    </View >
+    </View>
   );
 });
 
 export default Edit;
-
-const styles = StyleSheet.create({
-  card: { width: '50%', alignItems: "center", justifyContent: "center", },
-  tcop: { width: '50%', },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    //borderWidth: 1,
-    //width: "95%",
-  },
-  th: { width: '50%', fontWeight: "bold", borderWidth: 1, },
-  tbl: {
-    flexDirection: 'row',
-    padding: 10,
-    borderWidth: 1,
-    width: '100%',
-  },
-});

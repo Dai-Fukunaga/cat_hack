@@ -83,7 +83,7 @@ const Home = memo((props) => {
             {/* edit button */}
             <TouchableOpacity
               style={styles.deck_button}
-              onPress={() => { props.navigation.navigate("Edit") }}
+              onPress={() => { props.navigation.navigate("Edit", { setData: setData, deck: decks[item], deckName: item }) }}
             >
               <AntDesign name="edit" size={30} color="#555555" />
             </TouchableOpacity>
@@ -95,9 +95,7 @@ const Home = memo((props) => {
             >
               <Feather name="trash-2" size={30} color="white" />
             </TouchableOpacity>
-
           </View>
-
         </TouchableOpacity>
       </View>
     );

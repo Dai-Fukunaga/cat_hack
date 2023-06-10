@@ -46,7 +46,6 @@ const Create = memo((props) => {
       if (cards.length === 0) {
         cards = [[front, back]];
       } else {
-        // cards = [cards, [front, back]];
         cards.push([front, back]);
         setDeck(cards);
       }
