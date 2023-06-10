@@ -38,7 +38,7 @@ const Edit = memo((props) => {
   const renderItem = ({ item }) => (
     <View style={{ padding: 10 }}>
       <TouchableOpacity style={styles.deck_container}>
-        <Text style={styles.deck_name}>{item[0]}</Text>
+        <Text>Front: {item[0]}  Back: {item[1]}</Text>
         <View style={styles.deck_button_container}>
           {/* edit button */}
           <TouchableOpacity
@@ -60,27 +60,6 @@ const Edit = memo((props) => {
   );
 
   return (
-    // <View style={styles.container}>
-    //   <ScrollView contentContainerStyle={styles.tbl}>
-    //     <View>
-    //       <View style={{ flexDirection: 'row', }}>
-    //         {/* Header of the Table */}
-    //         <Text style={styles.th}>Front</Text>
-    //         <Text style={styles.th}>Back</Text>
-    //       </View>
-    //       {deck.map(([term, def], index) => (
-    //         <View key={index} style={{ ...styles.tbl, borderWidth: 1, }}>
-    //           {/* Term with Touchable Opacity iterated */}
-    //           <TouchableOpacity style={styles.card}><Text style={styles.card}>{term}</Text></TouchableOpacity>
-    //           {/* Def iterated */}
-    //           <TouchableOpacity style={styles.card}><Text style={styles.card}>{def}</Text></TouchableOpacity>
-    //         </View>
-    //       ))}
-    //     </View>
-    //   </ScrollView>
-    //   <Button title="Save" style={{ top: 0, }} onPress={() => { update() }}></Button>
-    //   <StatusBar style="auto" />
-    // </View>
     <View>
       <FlatList
         data={deck}
